@@ -1,0 +1,25 @@
+services:
+  vnc-desktop-fluxbox:
+    container_name: vnc-desktop-fluxbox
+    build: .
+    ports:
+      - 5901:5901
+    environment:
+      - VNC_PASSWORD=123456
+    volumes:
+      - vnc-home:/home/vncuser
+    shm_size: '256mb'
+    networks:
+      net:
+        ipv4_address: 172.15.0.18
+    logging:
+      options:
+        max-size: 100M
+    #entrypoint: sleep 1000000        
+
+volumes:
+  vnc-home:
+
+networks:
+  net:
+    external: true
